@@ -1,4 +1,19 @@
 ﻿@page "/index.html"
 @inherits IndexPage
+@inject IJSRuntime JS
 
 <h1>Hello, from Blazor.</h1>
+
+
+<h3>PDF First Page Preview</h3>
+<canvas id="pdf-canvas"></canvas>
+<img src="@previewImage" />
+
+<button @onclick="ShowPreview" class="btn btn-primary">Show First Page</button>
+@code {
+    string? previewImage;
+    private async Task ShowPreview()
+    {
+        previewImage = await JS.InvokeAsync<string>("pdfService.renderFirstPage", "sample.pdf", "pdf-canvas");
+    }
+}
