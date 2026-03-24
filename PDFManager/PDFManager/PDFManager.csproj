@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.*" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\pdf\dist\" />
+  </ItemGroup>
+
 </Project>
