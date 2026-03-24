@@ -1,3 +1,31 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+<PageTitle>Doctor Who® Database</PageTitle>
+
+<header class="bg-primary text-white p-3">
+    <h1>Doctor Who® Database</h1>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-md-3 bg-dark text-white min-vh-100 d-flex flex-column ">
+            <br />
+            <input class="btn btn-primary" type="file" id="pdfInput" accept="application/pdf" />
+            <br />
+            <button class="btn btn-primary">Show List</button>
+        </aside>
+        <main class="col-md-9 bg-light min-vh-100">
+            @Body
+        </main>
+    </div>
+</div>
+
+<footer class="bg-secondary text-white text-center p-2">
+    @TrademarkMessage
+</footer>
+
+@code {
+    public string TrademarkMessage { get; set; } =
+        "Doctor Who is a registered trademark of the BBC. " +
+        "https://www.doctorwho.tv/ https://www.bbc.com";
+}
