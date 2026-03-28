@@ -6,7 +6,7 @@
 
 
 <h3>PDF First Page Preview</h3>
-@* <canvas id="pdf-canvas"></canvas> *@
+
 <img src="@previewImage" width="150" height="200"/>
 
 <button @onclick="ShowPreview" class="btn btn-primary">Show First Page</button>
@@ -15,12 +15,7 @@
     string? previewImage;
     private async Task ShowPreview()
     {
-        previewImage = await JS.InvokeAsync<string>("pdfService.renderFirstPageImage", "sample.pdf");
-        
-        // var base64Data = previewImage.Split(',')[1];
-        // var bytes = Convert.FromBase64String(base64Data);
-
-        // await File.WriteAllBytesAsync("wwwroot/images/preview.png", bytes);
+        previewImage = await JS.InvokeAsync<string>("pdfService.renderFirstPageImage", "sample.pdf");        
     }
 }
 
