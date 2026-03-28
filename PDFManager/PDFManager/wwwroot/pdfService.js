@@ -24,5 +24,31 @@ window.pdfService = {
         await page.render(renderContext).promise;
 
         return canvas.toDataURL("image/png"); // PNG data वापस देगा
+    },
+
+     renderFirstPageImage: async function (pdfUrl) {
+        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+        const page = await pdf.getPage(1);
+
+        const scale = 1.5;
+        const viewport = page.getViewport({ scale: scale });
+
+        // Offscreen canvas (DOM में नहीं दिखेगा)
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        };
+
+        await page.render(renderContext).promise;
+
+        // सिर्फ़ image data वापस करेगा
+        return canvas.toDataURL("image/png");
     }
+
 };
